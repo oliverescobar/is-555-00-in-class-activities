@@ -1,0 +1,10 @@
+.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.hidden/
+.idea/
+section_saved/*
+to_share/*
