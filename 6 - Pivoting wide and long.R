@@ -62,6 +62,7 @@
 library(tidyverse)
 
 
+
 drinks <- tribble(
   ~country,  ~soda, ~tea,  ~sparkling_water,
   'China',     79,    192,     8,

@@ -9,7 +9,18 @@ df <- mpg
 # Create a summary that includes only cars manufactured by "toyota" or "honda", 
 # with displ less than 2.0. Show only the manufacturer, model, year, and displ 
 # columns in the result, sorted by displ in ascending order.
+df %>%
+  count(displ)
 
+df %>%
+  select(displ) %>%
+  summary()
+
+df %>%
+  filter(manufacturer %in% c('toyota', 'honda')) %>%
+  filter(displ < 2) %>%
+  select(manufacturer, model, year, displ) %>%
+  arrange()
 
 
 # Add a new column called efficiency that calculates the average fuel efficiency 
@@ -18,16 +29,29 @@ df <- mpg
 # efficiency, and class columns, sorted by efficiency in descending order.
 
 
-
-
-
 # Group the dataset by class and calculate:
 #    - The total number of cars in each class (total_cars).
 #    - The average city mileage (avg_cty).
 #    - The average highway mileage (avg_hwy).
 # Display the results, sorted by total_cars in descending order.
 
+df%>%
+  group_by(class) %>%
+  mutate(max_hwy_mpg = max(hwy))
+
+df %>%
+  group_by(class) %>%
+  summarize(avg_mwy_mpg = mean(hwy),
+            total_cars = n(),
+            distinct_count_mft = (n_distinct))
 
 
+df %>%
+  group_by(manufacturer) %>%
+  slice_min(displ, with_ties = F)
 
-
+df %:%
+  group_by(manufacturer, year),
+  arrange(manufacturer, desc(year), desc(hwy), )
+  slice_head()
+  
